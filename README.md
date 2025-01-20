@@ -1,0 +1,2 @@
+
+This GitHub project showcases a basic shopping cart system implemented in JavaScript, where products like a laptop, mobile, and DVD are represented as objects with IDs, names, and prices. Operations include adding items to a cart, viewing the cart contents, simulating removal of items with shift and pop, and a simple undo feature using an additional array to store removed items. The code also includes a function to add items to the cart, which logs the addition of each product for user feedback.
