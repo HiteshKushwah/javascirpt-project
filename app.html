@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Ticket System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+    }
+    .complaints-list {
+      text-align: left;
+      margin-top: 20px;
+    }
+    .complaint-item {
+      padding: 5px;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Customer Support Ticket System</h1>
+    <div>
+      <input type="text" id="complaintInput" placeholder="Enter your complaint">
+      <button onclick="addComplaint()">Add Complaint</button>
+    </div>
+    <div>
+      <button onclick="resolveComplaint()">Resolve Complaint</button>
+    </div>
+    <div class="complaints-list">
+      <h3>Pending Complaints</h3>
+      <div id="complaints"></div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
