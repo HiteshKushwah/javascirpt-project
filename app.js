@@ -1,50 +1,30 @@
-// Queue to hold complaints
-let complaintsQueue = [];
-
-// Function to add a complaint
-function addComplaint() {
-  const input = document.getElementById("complaintInput");
-  const complaint = input.value.trim();
-
-  if (complaint === "") {
-    alert("Please enter a valid complaint.");
-    return;
-  }
-
-  complaintsQueue.push(complaint);
-  input.value = ""; // Clear input field
-  updateComplaintList();
-  alert(`Complaint added: "${complaint}"`);
-}
-
-// Function to resolve a complaint
-function resolveComplaint() {
-  if (complaintsQueue.length === 0) {
-    alert("No complaints to resolve!");
-    return;
-  }
-
-  const resolvedComplaint = complaintsQueue.shift();
-  updateComplaintList();
-  alert(`Resolved Complaint: "${resolvedComplaint}"`);
-}
-
-// Function to update the pending complaints list in the UI
-function updateComplaintList() {
-  const complaintsDiv = document.getElementById("complaints");
-  complaintsDiv.innerHTML = ""; // Clear existing list
-
-  if (complaintsQueue.length === 0) {
-    complaintsDiv.innerHTML = "<p>No pending complaints.</p>";
-    return;
-  }
-
-  complaintsQueue.forEach((complaint, index) => {
-    const complaintItem = document.createElement("div");
-    complaintItem.className = "complaint-item";
-    complaintItem.textContent = `${index + 1}. ${complaint}`;
-    complaintsDiv.appendChild(complaintItem);
-  });
-}
 
 
+const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const path = require('path');  // Import path module
+
+const app = express();
+
+dotenv.config(); // To load environment variables from .env file
+
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.log('Error connecting to MongoDB:', err));
+
+// Set up view engine as EJS
+app.set('view engine', 'ejs');
+
+// Explicitly set views directory using path.join
+app.set('views', path.join(__dirname, 'views'));
+
+// Route to render index.ejs
+app.get('/', (req, res) => {
+    res.render('index');  // Renders the "index.ejs" file in the "views" folder
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
+});
